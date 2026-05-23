@@ -1,4 +1,7 @@
-# wap-kitty
+<img src="photos/Untitled(1).png" alt="wap-kitty Preview" width="100%">
+
+
+# 🐱 wap-kitty
 
 Generate a **kitty terminal theme** from your wallpaper using **Material 3 (M3) TonalSpot** color extraction.
 
