@@ -1,4 +1,3 @@
-https://github.com/Quad-z/Wap-kitty/blob/a0a23673b0f06c25eaa2bc09d2fa7b9cb6fe301a/photos/Untitled(1).png
 # wap-kitty
 
 Generate a **kitty terminal theme** from your wallpaper using **Material 3 (M3) TonalSpot** color extraction.
