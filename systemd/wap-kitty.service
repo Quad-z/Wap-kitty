@@ -1,0 +1,6 @@
+[Unit]
+Description=Generate kitty theme from wallpaper (M3 TonalSpot)
+
+[Service]
+Type=oneshot
+ExecStart=%h/Downloads/wap-kitty/wap

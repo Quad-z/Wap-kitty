@@ -1,0 +1,8 @@
+[Unit]
+Description=Watch for wallpaper changes (wap-kitty)
+
+[Path]
+PathModified=%h/.cache/noctalia/wallpapers.json
+
+[Install]
+WantedBy=default.target
