@@ -1,4 +1,4 @@
-# 🐱 wap-kitty
+# 🐱 wap-kitty (only niri)
 
 <p align="center">
   <img src="photos/obzoor.gif" alt="wap-kitty Demo" width="100%">
