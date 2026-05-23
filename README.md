@@ -1,7 +1,7 @@
 # 🐱 wap-kitty
 
 <p align="center">
-  <img src="photos/Untitled(1).png" alt="wap-kitty Preview" width="100%">
+  <img src="photos/obzoor.gif" alt="wap-kitty Demo" width="100%">
 </p>
 
 <p align="center">
@@ -20,6 +20,10 @@ Unlike traditional terminal theme generators (such as `pywal`) that blindly grab
 ---
 
 ## ✨ Key Features
+
+<p align="center">
+  <img src="photos/Untitled(1).png" alt="wap-kitty Palette Output" width="90%">
+</p>
 
 * 🧠 **M3 TonalSpot Engine:** Native generation of *Primary, Secondary, Tertiary, Neutral, and Error* palettes using Google's official C++ binaries compiled via `pybind11`.
 * 👁️ **Contrast Enforcement:** Built-in compliance with perceptual readability standards (default contrast ratio of `3.0`) ensures your text never blends illegibly into the terminal background.
@@ -46,137 +50,3 @@ wap-kitty/
     ├── __init__.py      # Version metadata (1.0.0), exports main entry
     ├── __main__.py      # Execution gateway for python -m wap_kitty
     └── core.py          # Core logic (Wallpaper detection, M3 processing, config engine — 157 lines)
-
-```
-
-### The Binary Wrapper (`wap`)
-
-To ensure the modular `wap_kitty` package can be reliably executed from any working directory, the `wap` script handles paths deterministically:
-
-```bash
-#!/usr/bin/env bash
-dir="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
-exec env PYTHONPATH="$dir${PYTHONPATH:+:$PYTHONPATH}" python3 -m wap_kitty "$@"
-
-```
-
----
-
-## 🛠 Installation & Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone [https://github.com/Quad-z/Wap-kitty.git](https://github.com/Quad-z/Wap-kitty.git)
-cd Wap-kitty
-
-```
-
-### 2. Install Dependencies & Symlink
-
-You can use the provided `install.sh` script or execute the setup steps manually:
-
-```bash
-# Install core required dependencies safely
-pip install --user --break-system-packages material-color-utilities Pillow
-
-# Create a symlink to easily run wap globally from your user path
-ln -sf "$(pwd)/wap" ~/.local/bin/wap
-
-```
-
-### 3. Configure Kitty for Dynamic Loading
-
-To let Kitty consume theme updates dynamically on the fly, append this single line to your `~/.config/kitty/kitty.conf`:
-
-```kitty
-include current-theme.conf
-
-```
-
-> ⚠️ **Note:** Your personal configuration values like `background_opacity` and `background_blur` are safely preserved and will not be overwritten by `wap-kitty`.
-
-### 4. Enable Automated Hooks (Optional)
-
-If you manage your desktop wallpapers using `noctalia`, seamlessly activate real-time background tracking:
-
-```bash
-cp systemd/wap-kitty.{service,path} ~/.config/systemd/user/
-systemctl --user daemon-reload
-systemctl --user enable --now wap-kitty.path
-
-```
-
----
-
-## 💡 Usage
-
-The command-line interface is built to be clean, intuitive, and minimal:
-
-```bash
-# Auto-detect current desktop wallpaper from ~/.cache/noctalia/wallpapers.json
-wap
-
-# Force-generate a theme layout from a specific image file path
-wap ~/Pictures/my_wallpaper.jpg
-
-# Quick test run using assets inside the repository
-wap ~/Downloads/wap-kitty/photos/example.png
-
-```
-
----
-
-## ⚙️ Technical Specifications & Core Logic
-
-### 1. Wallpaper Detection Pipeline
-
-When run in auto-detect mode, `core.py` reads the active `~/.cache/noctalia/wallpapers.json` tracking file:
-
-```json
-{
-  "wallpapers": {
-    "HDMI-A-1": {
-      "dark": "/home/user/wallpapers/image.png",
-      "light": "/home/user/wallpapers/image.png"
-    }
-  }
-}
-
-```
-
-The script safely parses the JSON, isolates the primary active monitor, grabs its `dark` (or `light`) path target, verifies the target file physically exists on your drive, and feeds it into the pipeline.
-
-### 2. Material 3 → Kitty Mapping Matrix
-
-Every generated `TonalPalette` exposes a native `get_argb(tone)` method where `tone` ranges from 0 to 100 (0 = Pure Black, 100 = Pure White). The core script masks out the alpha channels (`& 0xFFFFFF`) and strictly routes M3 architectural roles directly into Kitty configurations using this mapping matrix:
-
-| Kitty Token | M3 Palette Source | Kitty Token | M3 Palette Source |
-| --- | --- | --- | --- |
-| **background** | `primary` | **color0 / color8** | `neutral` |
-| **foreground** | `neutral` | **color1 / color9** | `error` |
-| **cursor / text** | `primary` / `primary` | **color2 / color10** | `secondary` |
-| **selection (bg/fg)** | `primary` / `neutral` | **color3 / color11** | `tertiary` |
-| **url_color** | `primary` | **color4 / color12** | `primary` |
-| **active_border** | `primary` | **color5 / color13** | `tertiary` |
-| **inactive_border** | `neutral` | **color6 / color14** | `secondary` |
-| **active_tab (fg/bg)** | `background` / `primary` | **color7 / color15** | `neutral` |
-| **inactive_tab (fg/bg)** | `neutral` / `neutral` |  |  |
-
-### 3. TonalSpot Quantization Engineering
-
-Under the hood, `material-color-utilities` calculates a precise `Variant.TONALSPOT` scheme profile:
-
-* **Chroma Constraints:** Primary = 36, Secondary = 16, Tertiary = 24, Neutral = 6, Neutral Variant = 8.
-* **Hue Offsets:** Secondary tracks the seed hue exactly, Tertiary = Hue + 60°, Error = 25°.
-* **Dual-Destination Export:** Output is simultaneously dumped to `~/.config/kitty/current-theme.conf` for direct Kitty consumption and written to `~/.cache/wal/colors-kitty.conf` to guarantee backward compatibility with traditional `pywal` pipelines.
-
----
-
-## 📄 License
-
-This project is open-source and released under the **MIT License**. See the `LICENSE` file for details.
-
-```
-
-```
