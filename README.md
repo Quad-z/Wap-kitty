@@ -126,7 +126,7 @@ After `wap`:
 
 ---
 <p align="center">
-  <img src="photos/Untitled(1).png" alt="wap-kitty Palette Output" width="90%">
+  <img src="photos/Untitled.png" alt="wap-kitty Palette Output" width="90%">
 </p>
 
 ## 🖥️ Platform Guides
