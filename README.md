@@ -1,4 +1,4 @@
-# 🐱 wap-kitty (only niri)
+# 🐱 wap-kitty   UPDATE! (hyprland/kde/and more!)
 
 <p align="center">
   <img src="photos/obzoor.gif" alt="wap-kitty Demo" width="100%">
