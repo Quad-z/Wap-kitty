@@ -125,6 +125,9 @@ After `wap`:
 - Theme files: `~/.cache/wal/colors-kitty.conf` and `~/.config/kitty/current-theme.conf`
 
 ---
+<p align="center">
+  <img src="photos/Untitled(1).png" alt="wap-kitty Palette Output" width="90%">
+</p>
 
 ## 🖥️ Platform Guides
 
