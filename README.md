@@ -1,4 +1,5 @@
-# 🐱 wap-kitty (only niri)
+# 🐱 wap-kitty (add Platform Guides)
+
 
 <p align="center">
   <img src="photos/obzoor.gif" alt="wap-kitty Demo" width="100%">
