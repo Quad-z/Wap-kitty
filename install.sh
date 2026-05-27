@@ -9,3 +9,9 @@ ln -sf "$(pwd)/wap" ~/.local/bin/wap
 ln -sf "$(pwd)/wap" ~/.local/bin/wall-theme
 
 echo "Installed. Run: wap [image]"
+echo ""
+echo "Auto-detect supports: KDE, GNOME, Hyprland, Sway, XFCE,"
+echo "  Cinnamon, MATE, noćtalia, feh, nitrogen, swww, macOS, Windows"
+echo ""
+echo "For auto-apply on wallpaper change, set up a systemd path unit:" 
+echo "  https://github.com/quadraz/wap-kitty#auto-apply"

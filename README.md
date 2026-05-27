@@ -1,4 +1,4 @@
-# 🐱 wap-kitty   UPDATE! (hyprland/kde/and more!)
+# 🐱 wap-kitty (only niri)
 
 <p align="center">
   <img src="photos/obzoor.gif" alt="wap-kitty Demo" width="100%">
@@ -79,7 +79,8 @@ wap-kitty/
 └── wap_kitty/
     ├── __init__.py      # Version metadata (1.0.0), exports main entry
     ├── __main__.py      # Execution gateway for python -m wap_kitty
-    └── core.py          # Core logic (Wallpaper detection, M3 processing, config engine — 157 lines)
+    ├── core.py          # Core logic (Wallpaper detection, M3 processing, config engine — 157 lines)
+    └── settings.py      # Config loader (~/.config/wap-kitty/settings.json)
 ```
 
 ---
@@ -125,9 +126,24 @@ After `wap`:
 - Theme files: `~/.cache/wal/colors-kitty.conf` and `~/.config/kitty/current-theme.conf`
 
 ---
-<p align="center">
-  <img src="photos/Untitled.png" alt="wap-kitty Palette Output" width="90%">
-</p>
+
+## ⚙️ Settings
+
+wap-kitty creates a config file at `~/.config/wap-kitty/settings.json` after first run.
+You can edit it to enable/disable which apps receive theme updates:
+
+```json
+{
+  "targets": {
+    "kitty": true,
+    "fastfetch": true
+  }
+}
+```
+
+Set any target to `false` to skip it on subsequent runs.
+
+---
 
 ## 🖥️ Platform Guides
 
